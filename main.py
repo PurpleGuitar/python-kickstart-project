@@ -18,19 +18,21 @@ def parse_args() -> Namespace:
 
 def setup_logging(args: Namespace) -> None:
     """Setup logging for script."""
-
     # read logging level from args
     if args.trace:
         logging_level = logging.DEBUG
     else:
         logging_level = logging.WARNING
-
-    # Set up
+    # Set up logging format
     logging.basicConfig(
         format=(
+            # Timestamp
             "%(asctime)s "
+            # Severity of log entry
             "%(levelname)s "
+            # module/function:line:
             "%(module)s/%(funcName)s:%(lineno)d: "
+            # message
             "%(message)s"
         ),
         level=logging_level,
