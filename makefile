@@ -20,7 +20,7 @@ test: .venv
 
 .PHONY: edit
 edit:
-	${EDITOR} readme.md makefile main.py *.py **/*.py requirements.txt .gitignore
+	${EDITOR} readme.md makefile main.py *.py requirements.txt .gitignore
 
 .PHONY: format
 format: .venv
