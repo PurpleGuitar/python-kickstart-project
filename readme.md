@@ -1,4 +1,4 @@
-# Kickstart Python project 
+# Python Kickstart Project
 
 This repo is intended to provide a basic environment for kickstarting a new
 Python project.  It has the following features:
@@ -9,6 +9,7 @@ Python project.  It has the following features:
 - formatting 
 - command-line arguments and help
 - logging, including enabling debug logging using `--trace`
+- Basic debugging support for VSCode
 
 # Usage
 
