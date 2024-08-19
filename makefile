@@ -24,8 +24,7 @@ edit:
 
 .PHONY: format
 format: .venv
-	. .venv/bin/activate \
-	&& python -m black *.py
+	. .venv/bin/activate && python -m black *.py
 
 .venv: requirements.txt
 	# Create virtual environment
