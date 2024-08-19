@@ -22,4 +22,4 @@ Use `make` to do basic operations:
 
 The makefile will do the work of building and maintaining your virtual environment as needed. It will automatically detect when you make changes to `requirements.txt` and update the virtual environment as needed. 
 
-If you want to force an update just `touch requirements.txt`.  If you need to rebuild the virtual environment from scratch, you can delete it using `make clean` and it will rebuild on the next make command.
+If you want to force an update to the virtual environment just `touch requirements.txt`.  If you need to rebuild the virtual environment from scratch, you can delete it using `make clean` and it will rebuild on the next make command.
