@@ -25,6 +25,7 @@ edit:
 .PHONY: format
 format: .venv
 	. .venv/bin/activate && python -m black *.py
+	pandoc readme.md --from markdown --to markdown -o readme.md
 
 .venv: requirements.txt
 	# Create virtual environment
