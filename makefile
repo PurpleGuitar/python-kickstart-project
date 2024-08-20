@@ -8,23 +8,23 @@ run-trace: .venv
 
 .PHONY: lint
 lint: .venv
-	. .venv/bin/activate && python3 -m mypy --strict *.py 
-	. .venv/bin/activate && python3 -m pylint --output-format=colorized *.py 
+	. .venv/bin/activate && python3 -m mypy --strict *.py **/*.py
+	. .venv/bin/activate && python3 -m pylint --output-format=colorized *.py **/*.py
 
 .PHONY: test
 test: .venv
 	. .venv/bin/activate \
-	&& python3 -m coverage run --branch -m unittest discover -v -s test\
+	&& python3 -m coverage run --branch -m unittest discover -v -s test \
 	&& python3 -m coverage report \
 	&& python3 -m coverage html
 
 .PHONY: edit
 edit:
-	${EDITOR} readme.md makefile main.py *.py requirements.txt .gitignore
+	${EDITOR} readme.md main.py *.py **/*.py makefile requirements.txt .gitignore
 
 .PHONY: format
 format: .venv
-	. .venv/bin/activate && python -m black *.py
+	. .venv/bin/activate && python -m black *.py **/*.py
 	pandoc readme.md --from markdown --to markdown --output readme.md
 
 .venv: requirements.txt
@@ -40,5 +40,6 @@ clean:
 	rm -rf .mypy_cache
 	rm -rf .venv
 	rm -rf __pycache__
+	rm -rf test/__pycache__
 	rm -rf htmlcov
 	rm -f .coverage
