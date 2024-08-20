@@ -3,5 +3,6 @@
         "-v"
     ],
     "python.testing.pytestEnabled": false,
-    "python.testing.unittestEnabled": true
+    "python.testing.unittestEnabled": true,
+    "makefile.configureOnOpen": false
 }
