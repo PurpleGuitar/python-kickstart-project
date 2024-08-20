@@ -18,8 +18,6 @@
             "module": "unittest",
             "args": [
                 "discover",   // Automatically discover unit tests
-                "-s", "test", // Test files are in `test/`
-                "-t", ".",    // Root dir of project
                 "-v"          // Verbose output 
             ],
             "console": "integratedTerminal"

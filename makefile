@@ -14,7 +14,7 @@ lint: .venv
 .PHONY: test
 test: .venv
 	. .venv/bin/activate \
-	&& python3 -m coverage run --branch -m unittest discover -v -s test -t . \
+	&& python3 -m coverage run --branch -m unittest discover -v \
 	&& python3 -m coverage report \
 	&& python3 -m coverage html
 
