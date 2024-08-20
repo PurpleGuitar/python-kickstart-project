@@ -10,6 +10,19 @@
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal"
+        },
+        {
+            "name": "Python Debugger: Unit Test Discovery",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "unittest",
+            "args": [
+                "discover",  // Automatically discover unit tests
+                "-v",        // Verbose output 
+                "-s", "test" // Test files are in `test/`
+            ],
+            "console": "integratedTerminal"
         }
+
     ]
 }
