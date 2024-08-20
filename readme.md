@@ -9,7 +9,7 @@ project. It has the following features already set up:
 -   formatting using `black` and `pandoc`
 -   command-line arguments and help using `argparse`
 -   logging, including setting debug via `--trace`
--   Basic debugging support for VSCode
+-   Setup for running, debugging, and testing via VSCode
 
 # Files
 
@@ -42,7 +42,12 @@ Unit tests, including tests for project modules, can all go in the
 `tests/` folder. It is already set up as a importable module for
 automatic test discovery.
 
-In VSCode, you can see, run, and debug your tests from the "Testing" View.
+# VSCode
+
+VSCode has been configured for several actions:
+
+- Run and debug `main.py` with and without tracing.
+- Discover, run, and debug your unit tests in the "Testing" view.
 
 # Troubleshooting
 
