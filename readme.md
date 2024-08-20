@@ -16,22 +16,24 @@ project. It has the following features already set up:
 Main files in this project:
 
 -   `main.py`: Your Python source code goes here.
--   `test_main.py`: Your unit tests go here.
--   `requirements.txt`: Edit to add or remove Python library
-    dependencies.
+-   `test/test_main.py`: Your unit tests go here.
+-   `requirements.txt`: Edit to add or remove library dependencies.
 -   `makefile`: Contains commands for `make` to execute.
 
 Use `make` to do basic operations:
 
 -   `make run` to run the program.
 -   `make run-trace` to run with debug logs sent to stderr.
--   `make lint` to run mypy and pylint on the Python source files.
+-   `make lint` to run mypy and pylint on source and tests.
 -   `make test` to discover and run tests with coverage.
 -   `make format` to reformat Python source files and readme.md.
 
 Virtual environment management is automatic. Update `requirements.txt`
 to add or remove libraries, and the makefile commands will automatically
 call `venv` and `pip` as needed to update the environment.
+
+All tests, including tests for libraries, should go in the `test/`
+folder.
 
 # Troubleshooting
 

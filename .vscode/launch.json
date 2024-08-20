@@ -17,9 +17,10 @@
             "request": "launch",
             "module": "unittest",
             "args": [
-                "discover",  // Automatically discover unit tests
-                "-v",        // Verbose output 
-                "-s", "test" // Test files are in `test/`
+                "discover",   // Automatically discover unit tests
+                "-s", "test", // Test files are in `test/`
+                "-t", ".",    // Root dir of project
+                "-v"          // Verbose output 
             ],
             "console": "integratedTerminal"
         }
