@@ -46,15 +46,19 @@ automatic test discovery.
 
 VSCode has been configured for several actions:
 
-- Run and debug `main.py` with and without tracing.
-- Discover, run, and debug your unit tests in the "Testing" view.
+-   Run and debug `main.py` with and without tracing.
+-   Discover, run, and debug your unit tests in the "Testing" view.
 
 # Troubleshooting
 
-If you need to force an update to the virtual environment, just
-`touch requirements.txt`. The next `make` command will call `pip` to
-re-process dependencies.
+If VSCode doesn't seem to be picking up your modules, you may need to
+use the command "Python: select interpreter" to select the one in the
+project's virtual environment directory: `./.venv/bin/python`
+
+If you need to force an update to the project dependencies, you can
+`touch requirements.txt` and then execute any `make` command,
+e.g. `make .venv`, to detect the change and update the dependencies.
 
 If you need to force a rebuild of the virtual environment from scratch,
-you can delete it using `make clean`. The next `make` command will
-re-create it.
+you can delete it using `make clean`, and then execute any `make`
+command, e.g. `make .venv`, to re-create the virtual environment.
