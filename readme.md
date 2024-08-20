@@ -11,14 +11,16 @@ project. It has the following features already set up:
 -   logging, including setting debug via `--trace`
 -   Basic debugging support for VSCode
 
-# Usage
+# Files
 
 Main files in this project:
 
 -   `main.py`: Your Python source code goes here.
--   `test/test_main.py`: Your unit tests go here.
+-   `tests/test_main.py`: Your unit tests go here.
 -   `requirements.txt`: Edit to add or remove library dependencies.
 -   `makefile`: Contains commands for `make` to execute.
+
+# Make commands
 
 Use `make` to do basic operations:
 
@@ -28,12 +30,19 @@ Use `make` to do basic operations:
 -   `make test` to discover and run tests with coverage.
 -   `make format` to reformat Python source files and readme.md.
 
+# Virtual Environment
+
 Virtual environment management is automatic. Update `requirements.txt`
 to add or remove libraries, and the makefile commands will automatically
 call `venv` and `pip` as needed to update the environment.
 
-All tests, including tests for libraries, should go in the `test/`
-folder.
+# Unit testing
+
+Unit tests, including tests for project modules, can all go in the
+`tests/` folder. It is already set up as a importable module for
+automatic test discovery.
+
+In VSCode, you can see, run, and debug your tests from the "Testing" View.
 
 # Troubleshooting
 
