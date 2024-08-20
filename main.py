@@ -40,7 +40,7 @@ def setup_logging(args: Namespace) -> None:
 
 
 def testable_function(operand1: int, operand2: int) -> int:
-    """An example function to be tested in main_test.py.  Adds its parameters."""
+    """An example function to be tested in main_test.py."""
     return operand1 + operand2
 
 
