@@ -16,7 +16,7 @@ project. It has the following features already set up:
 Main files in this project:
 
 -   `main.py`: Your Python source code goes here.
--   `tests/test_main.py`: Your unit tests go here.
+-   `tests/test_main.py`: Your unit tests can go in this directory.
 -   `requirements.txt`: Edit to add or remove library dependencies.
 -   `makefile`: Contains commands for `make` to execute.
 
@@ -48,6 +48,8 @@ VSCode has been configured for several actions:
 
 -   Run and debug `main.py` with and without tracing.
 -   Discover, run, and debug your unit tests in the "Testing" view.
+-   You can still use `make` commands with VSCode; for example to create
+    or update the virtual environment, run `make .venv`.
 
 # Troubleshooting
 
