@@ -48,10 +48,14 @@ VSCode has been configured for several actions:
 
 -   Run and debug `main.py` with and without tracing.
 -   Discover, run, and debug your unit tests in the "Testing" view.
--   You can still use `make` commands with VSCode; for example to create
-    or update the virtual environment, run `make .venv`.
+-   To create or update the virtual environment for VSCode, use
+    `make .venv`.
 
 # Troubleshooting
+
+Sometimes VSCode doesn't start correctly the first time when clicking
+the "Start Debugging" action from the "Run and Debug" panel. Wait for it
+to time out, then try the action again.
 
 If VSCode doesn't seem to be picking up your modules, you may need to
 use the command "Python: select interpreter" to select the one in the
