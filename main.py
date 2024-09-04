@@ -9,17 +9,17 @@ import logging
 # Project imports
 
 
-def parse_args() -> Namespace:
+def parse_args() -> Namespace:  # pragma: no cover
     """Parse command line arguments"""
     parser = ArgumentParser(description="TODO: Description of this script")
     parser.add_argument("--trace", action="store_true", help="Enable tracing output")
     return parser.parse_args()
 
 
-def setup_logging(args: Namespace) -> None:
+def setup_logging(trace: bool) -> None:  # pragma: no cover
     """Setup logging for script."""
     # read logging level from args
-    if args.trace:
+    if trace:
         logging_level = logging.DEBUG
     else:
         logging_level = logging.WARNING
@@ -44,13 +44,13 @@ def testable_function(operand1: int, operand2: int) -> int:
     return operand1 + operand2
 
 
-def main() -> None:
+def main() -> None:  # pragma: no cover
     """Main function"""
     args = parse_args()
-    setup_logging(args)
+    setup_logging(args.trace)
 
     logging.debug("TODO: Put code here :)")
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     main()
