@@ -1,3 +1,7 @@
+#
+# Run app
+#
+
 .PHONY: run
 run: .venv
 	. .venv/bin/activate && python3 main.py
@@ -6,10 +10,36 @@ run: .venv
 run-trace: .venv
 	. .venv/bin/activate && python3 main.py --trace
 
-.PHONY: lint
-lint: .venv
+#
+# Virtual environment management
+#
+
+.venv: requirements.txt
+	# Create virtual environment
+	python3 -m venv .venv
+	# Install/update dependencies from requirements.txt
+	. .venv/bin/activate; python3 -m pip install -r requirements.txt
+	# Update modified date of .venv so that make knows it's been updated
+	touch .venv
+
+#
+# Linting
+#
+
+.PHONY: mypy
+mypy: .venv
 	. .venv/bin/activate && python3 -m mypy --strict *.py **/*.py
+
+.PHONY: pylint
+pylint: .venv
 	. .venv/bin/activate && python3 -m pylint --output-format=colorized *.py **/*.py
+
+.PHONY: lint
+lint: .venv mypy pylint
+
+#
+# Testing
+#
 
 .PHONY: test
 test: .venv
@@ -17,6 +47,10 @@ test: .venv
 	&& python3 -m coverage run --branch -m unittest discover -v \
 	&& python3 -m coverage report \
 	&& python3 -m coverage html
+
+#
+# Editing and Formatting
+#
 
 .PHONY: edit
 edit:
@@ -27,13 +61,9 @@ format: .venv
 	. .venv/bin/activate && python -m black *.py **/*.py
 	pandoc readme.md --from markdown --to markdown --output readme.md
 
-.venv: requirements.txt
-	# Create virtual environment
-	python3 -m venv .venv
-	# Install/update dependencies from requirements.txt
-	. .venv/bin/activate; python3 -m pip install -r requirements.txt
-	# Update modified date of .venv so that make knows it's been updated
-	touch .venv
+#
+# Cleanup
+#
 
 .PHONY: clean
 clean:
