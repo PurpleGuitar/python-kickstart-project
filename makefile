@@ -4,10 +4,6 @@
 
 .PHONY: run
 run: .venv
-	. .venv/bin/activate && python3 main.py
-
-.PHONY: run-trace
-run-trace: .venv
 	. .venv/bin/activate && python3 main.py --trace
 
 #
