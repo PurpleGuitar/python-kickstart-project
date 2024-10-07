@@ -14,4 +14,4 @@ class MainTest(unittest.TestCase):
 
     def test_example(self) -> None:
         """Example test that """
-        self.assertTrue(callable(main.parse_args))
+        self.assertTrue(callable(main.main))
