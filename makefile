@@ -45,6 +45,16 @@ test: .venv
 	&& python3 -m coverage html
 
 #
+# Building
+#
+
+.PHONY: build
+build: .venv
+	. .venv/bin/activate \
+	&& pyinstaller --onefile main.py
+
+
+#
 # Editing and Formatting
 #
 
@@ -69,3 +79,5 @@ clean:
 	rm -rf test/__pycache__
 	rm -rf htmlcov
 	rm -f .coverage
+	rm -rf build
+	rm -rf dist

@@ -13,5 +13,5 @@ class MainTest(unittest.TestCase):
     """Tests for main.py"""
 
     def test_example(self) -> None:
-        """Example test that """
+        """Example test"""
         self.assertTrue(callable(main.main))
