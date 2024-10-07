@@ -12,6 +12,6 @@ import main
 class MainTest(unittest.TestCase):
     """Tests for main.py"""
 
-    def test_testable_function(self) -> None:
-        """Example test"""
-        self.assertEqual(7, main.testable_function(3, 4))
+    def test_example(self) -> None:
+        """Example test that """
+        self.assertTrue(callable(main.parse_args))

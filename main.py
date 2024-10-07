@@ -39,11 +39,6 @@ def setup_logging(trace: bool) -> None:  # pragma: no cover
     )
 
 
-def testable_function(operand1: int, operand2: int) -> int:
-    """An example function to be tested in test_main.py."""
-    return operand1 + operand2
-
-
 def main() -> None:  # pragma: no cover
     """Main function"""
     args = parse_args()
