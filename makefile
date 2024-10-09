@@ -45,6 +45,32 @@ test: .venv
 	&& python3 -m coverage html
 
 #
+# Watch directories for changes
+#
+
+.phony: lint-watch
+lint-watch:
+	while inotifywait -e close_write,moved_to,create . tests; do \
+		clear; \
+		$(MAKE) lint; \
+	done
+
+.phony: test-watch
+test-watch:
+	while inotifywait -e close_write,moved_to,create . tests; do \
+		clear; \
+		$(MAKE) test; \
+	done
+
+.phony: lint-test-watch
+lint-test-watch:
+	while inotifywait -e close_write,moved_to,create . tests; do \
+		clear; \
+		$(MAKE) lint && $(MAKE) test; \
+	done
+
+
+#
 # Building
 #
 
