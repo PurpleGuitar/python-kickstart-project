@@ -24,11 +24,11 @@ run: .venv
 
 .PHONY: mypy
 mypy: .venv
-	. .venv/bin/activate && python3 -m mypy --strict *.py **/*.py
+	. .venv/bin/activate && python3 -m mypy --strict *.py tests/*.py
 
 .PHONY: pylint
 pylint: .venv
-	. .venv/bin/activate && python3 -m pylint --output-format=colorized *.py **/*.py
+	. .venv/bin/activate && python3 -m pylint --output-format=colorized *.py tests/*.py
 
 .PHONY: lint
 lint: .venv mypy pylint
@@ -86,11 +86,11 @@ build: .venv
 
 .PHONY: edit
 edit:
-	${EDITOR} readme.md main.py *.py **/*.py makefile requirements.txt .gitignore
+	${EDITOR} readme.md main.py *.py tests/*.py makefile requirements.txt .gitignore
 
 .PHONY: format
 format: .venv
-	. .venv/bin/activate && python -m black *.py **/*.py
+	. .venv/bin/activate && python -m black *.py tests/*.py
 	pandoc readme.md --from markdown --to markdown --output readme.md
 
 #
