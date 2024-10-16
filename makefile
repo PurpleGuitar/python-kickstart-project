@@ -74,10 +74,17 @@ lint-test-watch:
 # Building
 #
 
+# If building for Windows and the app uses multiprocessing (e.g. using
+# concurrent.futures.ProcessPoolExecutor), you should use --onedir instead of
+# --onefile, and make sure to call multiprocessing.freeze_support() right after
+# `if __name__ == "__main__":`.  For more info, see:
+# https://docs.python.org/3/library/multiprocessing.html#multiprocessing.freeze_support
+# https://stackoverflow.com/a/54066043
+
 .PHONY: build
 build: .venv
 	. .venv/bin/activate \
-	&& pyinstaller --onefile main.py
+	&& pyinstaller --noconfirm --onefile main.py
 
 
 #
