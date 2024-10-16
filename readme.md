@@ -29,6 +29,7 @@ Use `make` to do basic operations:
 -   `make lint` to run mypy and pylint on source and tests.
 -   `make test` to discover and run tests with coverage.
 -   `make format` to reformat Python source files and readme.md.
+-   `make build` to build the project into an executable.
 
 # Virtual Environment
 
@@ -50,6 +51,29 @@ VSCode has been configured for several actions:
 -   Discover, run, and debug your unit tests in the "Testing" view.
 -   To create or update the virtual environment for VSCode, use
     `make .venv`.
+
+# Building
+
+## Multiprocessing on Windows
+
+If building for Windows, and your app uses multiprocessing (e.g. using
+[concurrent.futures.ProcessPoolExecutor](https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.ProcessPoolExecutor)),
+you should:
+
+-   use the `--onedir` parameter instead of `--onefile`,
+-   Make sure to call multiprocessing.freeze_support() right after your
+    program starts, e.g.:
+
+``` python
+import multiprocessing
+
+if __name__ == "__main__":
+    multiprocessing.freeze_support()
+```
+
+For more info, see [Python
+docs](https://docs.python.org/3/library/multiprocessing.html#multiprocessing.freeze_support)
+and [StackOverflow](https://stackoverflow.com/a/54066043)
 
 # Troubleshooting
 
