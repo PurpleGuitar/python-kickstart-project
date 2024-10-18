@@ -3,7 +3,7 @@
 # Standard imports
 import unittest
 
-# Third-party imports
+# Library imports
 
 # Project imports
 import main

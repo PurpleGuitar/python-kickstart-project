@@ -4,7 +4,7 @@
 from argparse import ArgumentParser, Namespace
 import logging
 
-# Third party imports
+# Library imports
 
 # Project imports
 
