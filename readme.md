@@ -9,7 +9,7 @@ project. It has the following features already set up:
 -   formatting using `black` and `pandoc`
 -   command-line arguments and help using `argparse`
 -   logging, including setting debug via `--trace`
--   Setup for running, debugging, and testing via VSCode
+-   Setup for running, debugging, and testing via VS Code
 
 # Files
 
@@ -43,13 +43,13 @@ Unit tests, including tests for project modules, can all go in the
 `tests/` folder. It is already set up as a importable module for
 automatic test discovery.
 
-# VSCode
+# VS Code
 
-VSCode has been configured for several actions:
+VS Code has been configured for several actions:
 
 -   Run and debug `main.py` with and without tracing.
 -   Discover, run, and debug your unit tests in the "Testing" view.
--   To create or update the virtual environment for VSCode, use
+-   To create or update the virtual environment for VS Code, use
     `make .venv`.
 
 # Building
@@ -77,11 +77,11 @@ and [StackOverflow](https://stackoverflow.com/a/54066043)
 
 # Troubleshooting
 
-Sometimes VSCode doesn't start correctly the first time when clicking
+Sometimes VS Code doesn't start correctly the first time when clicking
 the "Start Debugging" action from the "Run and Debug" panel. Wait for it
 to time out, then try the action again.
 
-If VSCode doesn't seem to be picking up your modules, you may need to
+If VS Code doesn't seem to be picking up your modules, you may need to
 use the command "Python: select interpreter" to select the one in the
 project's virtual environment directory: `./.venv/bin/python`
 
