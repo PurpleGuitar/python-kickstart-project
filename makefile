@@ -69,7 +69,6 @@ lint-test-watch:
 		$(MAKE) lint && $(MAKE) test; \
 	done
 
-
 #
 # Building
 #
@@ -78,7 +77,6 @@ lint-test-watch:
 build: .venv
 	. .venv/bin/activate \
 	&& pyinstaller --noconfirm --onefile main.py
-
 
 #
 # Editing and Formatting
