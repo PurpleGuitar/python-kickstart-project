@@ -85,11 +85,12 @@ container.
 -   `make docker-test` to test the app in a Docker container.
 -   `make docker-build` to build the Docker container.
 
-It's not usually necessary to call `make docker-build` directly, as it
-will be called automatically if your source files have changed.
+It's not usually necessary to call `make docker-build` directly; it
+should be called automatically if your source files have changed. The
+`.docker-built` target controls which files will trigger a rebuild.
 
-These commands will not create or use a virtual environment in your
-local workspace.
+These commands do not create or use a virtual environment in your local
+workspace.
 
 # Troubleshooting
 
