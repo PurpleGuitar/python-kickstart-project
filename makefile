@@ -111,21 +111,24 @@ clean:
 # 
 
 .PHONY: docker-build
-docker-build:
-	test -n "$(DOCKER_IMAGE)" || (echo "DOCKER_IMAGE is not set" && exit 1)
-	docker build -t $(DOCKER_IMAGE) .
+docker-build: .docker-built
 
 .PHONY: docker-run
-docker-run:
+docker-run: docker-build
 	test -n "$(DOCKER_IMAGE)" || (echo "DOCKER_IMAGE is not set" && exit 1)
 	docker run --rm -it $(DOCKER_IMAGE) make run
 
 .PHONY: docker-test
-docker-test:
+docker-test: docker-build
 	test -n "$(DOCKER_IMAGE)" || (echo "DOCKER_IMAGE is not set" && exit 1)
 	docker run --rm -it $(DOCKER_IMAGE) make test
 
 .PHONY: docker-lint
-docker-lint:
+docker-lint: docker-build
 	test -n "$(DOCKER_IMAGE)" || (echo "DOCKER_IMAGE is not set" && exit 1)
 	docker run --rm -it $(DOCKER_IMAGE) make lint
+
+.docker-built: Dockerfile makefile requirements.txt main.py $(wildcard *.py) $(wildcard tests/*.py)
+	test -n "$(DOCKER_IMAGE)" || (echo "DOCKER_IMAGE is not set" && exit 1)
+	docker build -t $(DOCKER_IMAGE) .
+	touch .docker-built

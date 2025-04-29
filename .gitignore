@@ -15,3 +15,6 @@ htmlcov/
 
 # Vim temp files
 *.swp
+
+# Docker support
+.docker-built

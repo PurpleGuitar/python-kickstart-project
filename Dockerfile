@@ -12,9 +12,9 @@ WORKDIR /app
 
 # Copy makefile and other necessary files
 COPY makefile /app
-COPY *.py /app
-COPY tests/ /app/tests/
 COPY requirements.txt /app
+COPY tests/ /app/tests/
+COPY *.py /app
 
 # Install any needed packages specified in requirements.txt
 RUN make .venv
