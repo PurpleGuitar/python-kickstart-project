@@ -75,6 +75,22 @@ For more info, see [Python
 docs](https://docs.python.org/3/library/multiprocessing.html#multiprocessing.freeze_support)
 and [StackOverflow](https://stackoverflow.com/a/54066043)
 
+# Docker support
+
+Several `make` commands are available that will run in a Docker
+container.
+
+-   `make docker-run` to run the app in a Docker container.
+-   `make docker-lint` to lint the app in a Docker container.
+-   `make docker-test` to test the app in a Docker container.
+-   `make docker-build` to build the Docker container.
+
+It's not usually necessary to call `make docker-build` directly, as it
+will be called automatically if your source files have changed.
+
+These commands will not create or use a virtual environment in your
+local workspace.
+
 # Troubleshooting
 
 Sometimes VS Code doesn't start correctly the first time when clicking
