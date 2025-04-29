@@ -70,11 +70,11 @@ lint-test-watch:
 	done
 
 #
-# Building
+# Create distributable package
 #
 
-.PHONY: build
-build: .venv
+.PHONY: dist
+dist: .venv
 	. .venv/bin/activate \
 	&& pyinstaller --noconfirm --onefile main.py
 
@@ -105,3 +105,27 @@ clean:
 	rm -f .coverage
 	rm -rf build
 	rm -rf dist
+
+# 
+# Docker 
+# 
+
+.PHONY: docker-build
+docker-build:
+	test -n "$(DOCKER_IMAGE)" || (echo "DOCKER_IMAGE is not set" && exit 1)
+	docker build -t $(DOCKER_IMAGE) .
+
+.PHONY: docker-run
+docker-run:
+	test -n "$(DOCKER_IMAGE)" || (echo "DOCKER_IMAGE is not set" && exit 1)
+	docker run --rm -it $(DOCKER_IMAGE) make run
+
+.PHONY: docker-test
+docker-test:
+	test -n "$(DOCKER_IMAGE)" || (echo "DOCKER_IMAGE is not set" && exit 1)
+	docker run --rm -it $(DOCKER_IMAGE) make test
+
+.PHONY: docker-lint
+docker-lint:
+	test -n "$(DOCKER_IMAGE)" || (echo "DOCKER_IMAGE is not set" && exit 1)
+	docker run --rm -it $(DOCKER_IMAGE) make lint
