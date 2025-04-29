@@ -27,7 +27,7 @@ Use `make` to do basic operations:
 -   `make run` to run with debug logs sent to stderr.
 -   `make lint` to run mypy and pylint on source and tests.
 -   `make test` to discover and run tests with coverage.
--   `make build` to build the project into an executable.
+-   `make dist` to build an executable in the `dist/` directory.
 -   `make format` to reformat Python source files and readme.md.
 -   `make clean` to clean up temporary files.
 
