@@ -10,11 +10,11 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 # Set the working directory
 WORKDIR /app
 
-# Copy makefile and other necessary files
+# Set up venv
 COPY makefile /app
 COPY requirements.txt /app
+RUN make .venv
+
+# Copy the rest of the application code
 COPY tests/ /app/tests/
 COPY *.py /app
-
-# Install any needed packages specified in requirements.txt
-RUN make .venv
