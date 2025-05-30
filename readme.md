@@ -80,9 +80,9 @@ and [StackOverflow](https://stackoverflow.com/a/54066043)
 Several `make` commands are available that will run in a Docker
 container.
 
--   `make docker-run` to run the app in a Docker container.
--   `make docker-lint` to lint the app in a Docker container.
--   `make docker-test` to test the app in a Docker container.
+-   `make docker-run` to build and run the app in a Docker container.
+-   `make docker-lint` to build and lint the app in a Docker container.
+-   `make docker-test` to build and test the app in a Docker container.
 -   `make docker-build` to build the Docker container.
 
 It's not usually necessary to call `make docker-build` directly; it

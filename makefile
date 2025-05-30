@@ -110,9 +110,6 @@ clean:
 # Docker 
 # 
 
-.PHONY: docker-build
-docker-build: .docker-built
-
 .PHONY: docker-run
 docker-run: docker-build
 	test -n "$(DOCKER_IMAGE)" || (echo "DOCKER_IMAGE is not set" && exit 1)
@@ -127,6 +124,9 @@ docker-test: docker-build
 docker-lint: docker-build
 	test -n "$(DOCKER_IMAGE)" || (echo "DOCKER_IMAGE is not set" && exit 1)
 	docker run --rm -it $(DOCKER_IMAGE) make lint
+
+.PHONY: docker-build
+docker-build: .docker-built
 
 .docker-built: Dockerfile makefile requirements.txt main.py $(wildcard *.py) $(wildcard tests/*.py)
 	test -n "$(DOCKER_IMAGE)" || (echo "DOCKER_IMAGE is not set" && exit 1)
