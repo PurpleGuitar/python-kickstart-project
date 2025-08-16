@@ -125,6 +125,12 @@ docker-lint: docker-build
 	test -n "$(DOCKER_IMAGE)" || (echo "DOCKER_IMAGE is not set" && exit 1)
 	docker run --rm -it $(DOCKER_IMAGE) make lint
 
+.PHONY: docker-clean
+docker-clean:
+	test -n "$(DOCKER_IMAGE)" || (echo "DOCKER_IMAGE is not set" && exit 1)
+	docker image rm $(DOCKER_IMAGE) || true
+	rm .docker-built || true
+
 .PHONY: docker-build
 docker-build: .docker-built
 
