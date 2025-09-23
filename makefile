@@ -48,6 +48,13 @@ test: .venv
 # Watch directories for changes
 #
 
+.PHONY: run-watch
+run-watch:
+	while inotifywait -e close_write,moved_to,create . tests; do \
+		clear; \
+		$(MAKE) run; \
+	done
+
 .PHONY: lint-watch
 lint-watch:
 	while inotifywait -e close_write,moved_to,create . tests; do \
