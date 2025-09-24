@@ -50,7 +50,7 @@ test: .venv
 
 .PHONY: run-watch
 run-watch:
-	while inotifywait -e close_write,moved_to,create . tests; do \
+	while inotifywait -e close_write,moved_to,create --include '.*\.py$$' . tests; do \
 		clear; \
 		sleep 1; \
 		$(MAKE) run; \
@@ -58,7 +58,7 @@ run-watch:
 
 .PHONY: lint-watch
 lint-watch:
-	while inotifywait -e close_write,moved_to,create . tests; do \
+	while inotifywait -e close_write,moved_to,create --include '.*\.py$$' . tests; do \
 		clear; \
 		sleep 1; \
 		$(MAKE) lint; \
@@ -66,7 +66,7 @@ lint-watch:
 
 .PHONY: test-watch
 test-watch:
-	while inotifywait -e close_write,moved_to,create . tests; do \
+	while inotifywait -e close_write,moved_to,create --include '.*\.py$$' . tests; do \
 		clear; \
 		sleep 1; \
 		$(MAKE) test; \
@@ -74,7 +74,7 @@ test-watch:
 
 .PHONY: lint-test-watch
 lint-test-watch:
-	while inotifywait -e close_write,moved_to,create . tests; do \
+	while inotifywait -e close_write,moved_to,create --include '.*\.py$$' . tests; do \
 		clear; \
 		sleep 1; \
 		$(MAKE) lint && $(MAKE) test; \
