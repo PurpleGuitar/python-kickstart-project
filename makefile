@@ -52,6 +52,7 @@ test: .venv
 run-watch:
 	while inotifywait -e close_write,moved_to,create . tests; do \
 		clear; \
+		sleep 1; \
 		$(MAKE) run; \
 	done
 
@@ -59,6 +60,7 @@ run-watch:
 lint-watch:
 	while inotifywait -e close_write,moved_to,create . tests; do \
 		clear; \
+		sleep 1; \
 		$(MAKE) lint; \
 	done
 
@@ -66,6 +68,7 @@ lint-watch:
 test-watch:
 	while inotifywait -e close_write,moved_to,create . tests; do \
 		clear; \
+		sleep 1; \
 		$(MAKE) test; \
 	done
 
@@ -73,6 +76,7 @@ test-watch:
 lint-test-watch:
 	while inotifywait -e close_write,moved_to,create . tests; do \
 		clear; \
+		sleep 1; \
 		$(MAKE) lint && $(MAKE) test; \
 	done
 
