@@ -121,6 +121,8 @@ clean:
 # Docker 
 # 
 
+# You can set a sensible default for DOCKER_IMAGE by sourcing env.sh.
+
 .PHONY: docker-run
 docker-run: docker-build
 	test -n "$(DOCKER_IMAGE)" || (echo "DOCKER_IMAGE is not set" && exit 1)
