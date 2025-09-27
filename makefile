@@ -100,7 +100,7 @@ edit:
 .PHONY: format
 format: .venv
 	. .venv/bin/activate && python -m black *.py tests/*.py
-	pandoc readme.md --from markdown --to markdown --output readme.md
+	pandoc readme.md --from markdown --to gfm --output readme.md
 
 #
 # Cleanup
