@@ -22,13 +22,16 @@ run: .venv
 # Linting
 #
 
+# All .py files in non-dot subdirectories (exclude virtualenv, build/dist, hidden dirs)
+PY_SOURCES := $(shell find . -type f -name '*.py' -not -path './.*' -not -path './.venv/*' -not -path './build/*' -not -path './dist/*')
+
 .PHONY: mypy
 mypy: .venv
-	. .venv/bin/activate && python3 -m mypy --strict *.py tests/*.py
+	. .venv/bin/activate && python3 -m mypy --strict $(PY_SOURCES)
 
 .PHONY: pylint
 pylint: .venv
-	. .venv/bin/activate && python3 -m pylint --jobs 4 --output-format=colorized *.py tests/*.py
+	. .venv/bin/activate && python3 -m pylint --jobs 4 --output-format=colorized $(PY_SOURCES)
 
 .PHONY: lint
 lint: .venv mypy pylint
@@ -40,7 +43,7 @@ lint: .venv mypy pylint
 .PHONY: test
 test: .venv
 	. .venv/bin/activate \
-	&& python3 -m coverage run --branch -m unittest discover -s tests -v \
+	&& python3 -m coverage run --branch -m unittest discover -p "test*.py" \
 	&& python3 -m coverage report \
 	&& python3 -m coverage html
 
@@ -50,7 +53,7 @@ test: .venv
 
 .PHONY: run-watch
 run-watch:
-	while inotifywait -e close_write,moved_to,create --include '.*\.py$$' . tests; do \
+	while inotifywait -e close_write,moved_to,create $(PY_SOURCES); do \
 		clear; \
 		sleep 1; \
 		$(MAKE) run; \
@@ -58,7 +61,7 @@ run-watch:
 
 .PHONY: lint-watch
 lint-watch:
-	while inotifywait -e close_write,moved_to,create --include '.*\.py$$' . tests; do \
+	while inotifywait -e close_write,moved_to,create $(PY_SOURCES); do \
 		clear; \
 		sleep 1; \
 		$(MAKE) lint; \
@@ -66,7 +69,7 @@ lint-watch:
 
 .PHONY: test-watch
 test-watch:
-	while inotifywait -e close_write,moved_to,create --include '.*\.py$$' . tests; do \
+	while inotifywait -e close_write,moved_to,create $(PY_SOURCES); do \
 		clear; \
 		sleep 1; \
 		$(MAKE) test; \
@@ -74,7 +77,7 @@ test-watch:
 
 .PHONY: lint-test-watch
 lint-test-watch:
-	while inotifywait -e close_write,moved_to,create --include '.*\.py$$' . tests; do \
+	while inotifywait -e close_write,moved_to,create $(PY_SOURCES); do \
 		clear; \
 		sleep 1; \
 		$(MAKE) lint && $(MAKE) test; \
@@ -95,11 +98,11 @@ dist: .venv
 
 .PHONY: edit
 edit:
-	${EDITOR} readme.md main.py *.py tests/*.py makefile requirements.txt .gitignore
+	${EDITOR} readme.md main.py $(PY_SOURCES) makefile requirements.txt .gitignore
 
 .PHONY: format
 format: .venv
-	. .venv/bin/activate && python -m black *.py tests/*.py
+	. .venv/bin/activate && python -m black $(PY_SOURCES)
 	pandoc readme.md --from markdown --to gfm --output readme.md
 
 #
@@ -147,7 +150,8 @@ docker-clean:
 .PHONY: docker-build
 docker-build: .docker-built
 
-.docker-built: Dockerfile makefile requirements.txt main.py $(wildcard *.py) $(wildcard tests/*.py)
+.docker-built: Dockerfile makefile requirements.txt main.py $(wildcard *.py) $(wildcard tests/*.py) $(wildcard hex_utils/*.py)
+	# Build the Docker image
 	test -n "$(DOCKER_IMAGE)" || (echo "DOCKER_IMAGE is not set" && exit 1)
 	docker build -t $(DOCKER_IMAGE) .
 	touch .docker-built
