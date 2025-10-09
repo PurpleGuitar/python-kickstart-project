@@ -3,33 +3,33 @@
 This repo provides a basic environment for kickstarting a new Python
 project. It has the following features already set up:
 
--   a virtual environment using `venv`
--   linting using `mypy` and `pylint`
--   testing using `unittest` and `coverage`
--   formatting using `black` and `pandoc`
--   command-line arguments and help using `argparse`
--   logging, including setting debug via `--trace`
--   Setup for running, debugging, and testing via VS Code
+- a virtual environment using `venv`
+- linting using `mypy` and `pylint`
+- testing using `unittest` and `coverage`
+- formatting using `black` and `pandoc`
+- command-line arguments and help using `argparse`
+- logging, including setting debug via `--trace`
+- Setup for running, debugging, and testing via VS Code
 
 # Files
 
 Main files in this project:
 
--   `main.py`: Your Python source code goes here.
--   `tests/test_main.py`: Your unit tests can go in this directory.
--   `requirements.txt`: Edit to add or remove library dependencies.
--   `makefile`: Contains commands for `make` to execute.
+- `main.py`: Your Python source code goes here.
+- `tests/test_main.py`: Your unit tests can go in this directory.
+- `requirements.txt`: Edit to add or remove library dependencies.
+- `makefile`: Contains commands for `make` to execute.
 
 # Make commands
 
 Use `make` to do basic operations:
 
--   `make run` to run with debug logs sent to stderr.
--   `make lint` to run mypy and pylint on source and tests.
--   `make test` to discover and run tests with coverage.
--   `make dist` to build an executable in the `dist/` directory.
--   `make format` to reformat Python source files and readme.md.
--   `make clean` to clean up temporary files.
+- `make run` to run with debug logs sent to stderr.
+- `make lint` to run mypy and pylint on source and tests.
+- `make test` to discover and run tests with coverage.
+- `make dist` to build an executable in the `dist/` directory.
+- `make format` to reformat Python source files and readme.md.
+- `make clean` to clean up temporary files.
 
 # Virtual Environment
 
@@ -47,10 +47,10 @@ automatic test discovery.
 
 VS Code has been configured for several actions:
 
--   Run and debug `main.py` with and without tracing.
--   Discover, run, and debug your unit tests in the "Testing" view.
--   To create or update the virtual environment for VS Code, use
-    `make .venv`.
+- Run and debug `main.py` with and without tracing.
+- Discover, run, and debug your unit tests in the "Testing" view.
+- To create or update the virtual environment for VS Code, use
+  `make .venv`.
 
 # Building
 
@@ -60,9 +60,9 @@ If building for Windows, and your app uses multiprocessing (e.g. using
 [concurrent.futures.ProcessPoolExecutor](https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.ProcessPoolExecutor)),
 you should:
 
--   use the `--onedir` parameter instead of `--onefile`,
--   Make sure to call multiprocessing.freeze_support() right after your
-    program starts, e.g.:
+- use the `--onedir` parameter instead of `--onefile`,
+- Make sure to call multiprocessing.freeze_support() right after your
+  program starts, e.g.:
 
 ``` python
 import multiprocessing
@@ -80,10 +80,10 @@ and [StackOverflow](https://stackoverflow.com/a/54066043)
 Several `make` commands are available that will run in a Docker
 container.
 
--   `make docker-run` to build and run the app in a Docker container.
--   `make docker-lint` to build and lint the app in a Docker container.
--   `make docker-test` to build and test the app in a Docker container.
--   `make docker-build` to build the Docker container.
+- `make docker-run` to build and run the app in a Docker container.
+- `make docker-lint` to build and lint the app in a Docker container.
+- `make docker-test` to build and test the app in a Docker container.
+- `make docker-build` to build the Docker container.
 
 It's not usually necessary to call `make docker-build` directly; it
 should be called automatically if your source files have changed. The
