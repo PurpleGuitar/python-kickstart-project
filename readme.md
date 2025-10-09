@@ -39,9 +39,18 @@ call `venv` and `pip` as needed to update the environment.
 
 # Unit testing
 
-Unit tests, including tests for project modules, can all go in the
-`tests/` folder. It is already set up as a importable module for
-automatic test discovery.
+A `tests/` folder is already set up as a importable module for automatic
+test discovery. It has an example test inside it.
+
+If you prefer to keep your unit tests alongside your main code instead
+of in a `tests/` directory, that's fine; the test commands will work
+either way. Wherever you put your tests, the files should be named
+`test_xxx.py` to be discoverable.
+
+If you put your tests into a different subdirectory (for example, in a
+`module_xxx/tests` subdirectory), don't forget to include an
+`__init__.py` file in the subdirectory root, otherwise `unittest` won't
+be able to discover the test files.
 
 # VS Code
 
@@ -94,18 +103,26 @@ workspace.
 
 # Troubleshooting
 
+## Debugging in VS Code
+
 Sometimes VS Code doesn't start correctly the first time when clicking
-the "Start Debugging" action from the "Run and Debug" panel. Wait for it
-to time out, then try the action again.
+the "Start Debugging" action from the "Run and Debug" panel. Cancel it
+or wait for it to time out, then try the action again.
+
+## Linting in VS Code
 
 If VS Code doesn't seem to be picking up your modules, you may need to
 use the command "Python: select interpreter" to select the one in the
 project's virtual environment directory: `./.venv/bin/python`
 
+## Updating the virtual environment
+
 If you need to force an update to the project dependencies, you can
 `touch requirements.txt` and then execute any `make` command,
-e.g. `make .venv`, to detect the change and update the dependencies.
+e.g. `make run` or `make .venv`, to detect the change and update the
+dependencies.
 
 If you need to force a rebuild of the virtual environment from scratch,
 you can delete it using `make clean`, and then execute any `make`
-command, e.g. `make .venv`, to re-create the virtual environment.
+command, e.g. `make run` or `make .venv`, to re-create the virtual
+environment.
