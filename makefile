@@ -150,7 +150,7 @@ docker-clean:
 .PHONY: docker-build
 docker-build: .docker-built
 
-.docker-built: Dockerfile makefile requirements.txt main.py $(wildcard *.py) $(wildcard tests/*.py) $(wildcard hex_utils/*.py)
+.docker-built: Dockerfile makefile requirements.txt $(PY_SOURCES)
 	# Build the Docker image
 	test -n "$(DOCKER_IMAGE)" || (echo "DOCKER_IMAGE is not set" && exit 1)
 	docker build -t $(DOCKER_IMAGE) .
