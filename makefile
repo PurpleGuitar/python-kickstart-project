@@ -1,3 +1,6 @@
+# All .py files in non-dot subdirectories (exclude virtualenv, build/dist, hidden dirs)
+PY_SOURCES := $(shell find . -type f -name '*.py' -not -path './.*' -not -path './.venv/*' -not -path './build/*' -not -path './dist/*')
+
 #
 # Run app
 #
@@ -21,9 +24,6 @@ run: .venv
 #
 # Linting
 #
-
-# All .py files in non-dot subdirectories (exclude virtualenv, build/dist, hidden dirs)
-PY_SOURCES := $(shell find . -type f -name '*.py' -not -path './.*' -not -path './.venv/*' -not -path './build/*' -not -path './dist/*')
 
 .PHONY: mypy
 mypy: .venv
