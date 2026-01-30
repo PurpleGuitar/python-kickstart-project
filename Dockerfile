@@ -1,5 +1,5 @@
 # Start with a Python environment
-FROM python:3.12.3-slim
+FROM python:3.13.7-slim
 
 # Install make
 RUN apt-get update && apt-get install -y make
