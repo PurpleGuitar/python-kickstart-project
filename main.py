@@ -1,4 +1,4 @@
-""" TODO: Purpose of this program """
+"""TODO: Purpose of this program"""
 
 # Standard imports
 from argparse import ArgumentParser, Namespace
