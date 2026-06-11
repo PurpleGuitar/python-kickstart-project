@@ -29,7 +29,18 @@ Use `make` to do basic operations:
 - `make test` to discover and run tests with coverage.
 - `make dist` to build an executable in the `dist/` directory.
 - `make format` to reformat Python source files and readme.md.
+- `make edit` to open the project files in your `$EDITOR`.
 - `make clean` to clean up temporary files.
+
+## Watch commands
+
+These commands re-run automatically whenever a Python source file
+changes (they require `inotifywait`, from the `inotify-tools` package):
+
+- `make run-watch` to re-run the app on changes.
+- `make lint-watch` to re-lint on changes.
+- `make test-watch` to re-test on changes.
+- `make lint-test-watch` to lint and then test on changes.
 
 # Virtual Environment
 
@@ -44,8 +55,9 @@ test discovery. It has an example test inside it.
 
 If you prefer to keep your unit tests alongside your main code instead
 of in a `tests/` directory, that's fine; the test commands will work
-either way. Wherever you put your tests, the files should be named
-`test_xxx.py` to be discoverable.
+either way. Wherever you put your tests, the files should be named to
+match the `test*.py` pattern (for example, `test_main.py`) to be
+discoverable.
 
 If you put your tests into a different subdirectory (for example, in a
 `module_xxx/tests` subdirectory), don't forget to include an
@@ -93,6 +105,7 @@ container.
 - `make docker-lint` to build and lint the app in a Docker container.
 - `make docker-test` to build and test the app in a Docker container.
 - `make docker-build` to build the Docker container.
+- `make docker-clean` to remove the Docker image and rebuild marker.
 
 It's not usually necessary to call `make docker-build` directly; it
 should be called automatically if your source files have changed. The

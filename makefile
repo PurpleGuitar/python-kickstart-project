@@ -114,7 +114,7 @@ clean:
 	rm -rf .mypy_cache
 	rm -rf .venv
 	rm -rf __pycache__
-	rm -rf test/__pycache__
+	rm -rf tests/__pycache__
 	rm -rf htmlcov
 	rm -f .coverage
 	rm -rf build
