@@ -3,6 +3,7 @@
 # Standard imports
 from argparse import ArgumentParser, Namespace
 import logging
+import sys
 
 # Library imports
 
@@ -39,13 +40,22 @@ def setup_logging(trace: bool) -> None:  # pragma: no cover
     )
 
 
-def main() -> None:  # pragma: no cover
+def main(args: Namespace) -> int:
     """Main function"""
+
+    # Here you can add the main logic of your program
+    logging.debug("args: %s", args)
+
+    # On normal exit, return 0
+    return 0
+
+
+def cli() -> None:  # pragma: no cover
+    """Command-line entry point."""
     args = parse_args()
     setup_logging(args.trace)
-
-    logging.debug("TODO: Put code here :)")
+    sys.exit(main(args))
 
 
 if __name__ == "__main__":  # pragma: no cover
-    main()
+    cli()
