@@ -19,11 +19,8 @@ def parse_args() -> Namespace:  # pragma: no cover
 
 def setup_logging(trace: bool) -> None:  # pragma: no cover
     """Setup logging for script."""
-    # read logging level from args
-    if trace:
-        logging_level = logging.DEBUG
-    else:
-        logging_level = logging.WARNING
+    # Set logging level based on trace flag
+    logging_level = logging.DEBUG if trace else logging.WARNING
     # Set up logging format
     logging.basicConfig(
         format=(
