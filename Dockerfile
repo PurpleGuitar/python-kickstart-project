@@ -7,14 +7,21 @@ RUN apt-get update && apt-get install -y make
 # Clean up apt cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Set the working directory
+# Create an unprivileged user to run the application
+RUN useradd --create-home appuser
+
+# Set the working directory and hand it to the unprivileged user
 WORKDIR /app
+RUN chown appuser:appuser /app
+
+# Drop root privileges for everything that follows
+USER appuser
 
 # Set up venv
-COPY makefile /app
-COPY requirements.txt /app
+COPY --chown=appuser:appuser makefile /app
+COPY --chown=appuser:appuser requirements.txt /app
 RUN make .venv
 
 # Copy the rest of the application code
-COPY tests/ /app/tests/
-COPY *.py /app
+COPY --chown=appuser:appuser tests/ /app/tests/
+COPY --chown=appuser:appuser *.py /app
