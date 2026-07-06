@@ -4,17 +4,26 @@
 # holds the *settings* those tools use, so that editors, pre-commit hooks, and
 # CI all pick up the same configuration as `make lint` / `make test`.
 #
-# No new dependencies are required: black, mypy, pylint, and coverage all read
-# their configuration from pyproject.toml natively.
+# No plugins are required: ruff, mypy, and coverage all read their
+# configuration from pyproject.toml natively.
 
 [tool.mypy]
 strict = true
 
-[tool.pylint.main]
-jobs = 4
+[tool.ruff]
+target-version = "py313"
+line-length = 88
 
-[tool.black]
-target-version = ["py313"]
+[tool.ruff.lint]
+# Rule families to enable. Expand this list to opt into more checks.
+select = [
+    "E", "W",   # pycodestyle
+    "F",        # pyflakes
+    "I",        # isort (import sorting)
+    "B",        # flake8-bugbear (likely-bug patterns)
+    "UP",       # pyupgrade (modernize syntax)
+    "PL",       # pylint-equivalent rules
+]
 
 [tool.coverage.run]
 branch = true

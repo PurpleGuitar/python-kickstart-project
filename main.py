@@ -1,9 +1,9 @@
 """TODO: Purpose of this program"""
 
 # Standard imports
-from argparse import ArgumentParser, Namespace
 import logging
 import sys
+from argparse import ArgumentParser, Namespace
 
 # Library imports
 
@@ -54,5 +54,5 @@ def cli() -> None:  # pragma: no cover
     sys.exit(main(args))
 
 
-if __name__ == "__main__":  # pragma: no cover
+if __name__ == "__main__":
     cli()

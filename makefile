@@ -29,12 +29,12 @@ run: .venv
 mypy: .venv
 	. .venv/bin/activate && python3 -m mypy $(PY_SOURCES)
 
-.PHONY: pylint
-pylint: .venv
-	. .venv/bin/activate && python3 -m pylint --output-format=colorized $(PY_SOURCES)
+.PHONY: ruff
+ruff: .venv
+	. .venv/bin/activate && python3 -m ruff check $(PY_SOURCES)
 
 .PHONY: lint
-lint: .venv mypy pylint
+lint: .venv mypy ruff
 
 #
 # Testing
@@ -102,7 +102,7 @@ edit:
 
 .PHONY: format
 format: .venv
-	. .venv/bin/activate && python -m black $(PY_SOURCES)
+	. .venv/bin/activate && python3 -m ruff format $(PY_SOURCES)
 	pandoc readme.md --from markdown --to gfm+smart --output readme.md
 
 #

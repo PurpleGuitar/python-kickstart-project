@@ -4,9 +4,9 @@ This repo provides a basic environment for kickstarting a new Python
 project. It has the following features already set up:
 
 - a virtual environment using `venv`
-- linting using `mypy` and `pylint`
+- linting using `mypy` and `ruff`
 - testing using `unittest` and `coverage`
-- formatting using `black` and `pandoc`
+- formatting using `ruff` and `pandoc`
 - command-line arguments and help using `argparse`
 - logging, including setting debug via `--trace`
 - Setup for running, debugging, and testing via VS Code
@@ -18,8 +18,8 @@ Main files in this project:
 - `main.py`: Your Python source code goes here.
 - `tests/test_main.py`: Your unit tests can go in this directory.
 - `requirements.txt`: Edit to add or remove library dependencies.
-- `pyproject.toml`: Configuration for the tools (black, mypy, pylint,
-  coverage). Editors and CI read the same settings as `make`.
+- `pyproject.toml`: Configuration for the tools (ruff, mypy, coverage).
+  Editors and CI read the same settings as `make`.
 - `makefile`: Contains commands for `make` to execute.
 
 # Make commands
@@ -27,7 +27,7 @@ Main files in this project:
 Use `make` to do basic operations:
 
 - `make run` to run with debug logs sent to stderr.
-- `make lint` to run mypy and pylint on source and tests.
+- `make lint` to run mypy and ruff on source and tests.
 - `make test` to discover and run tests with coverage.
 - `make dist` to build an executable in the `dist/` directory.
 - `make format` to reformat Python source files and readme.md.

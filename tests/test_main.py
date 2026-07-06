@@ -1,11 +1,10 @@
 """Tests for main.py"""
 
 # Standard imports
-from argparse import Namespace
 import unittest
+from argparse import Namespace
 
 # Library imports
-
 # Project imports
 import main
 
@@ -19,5 +18,5 @@ class MainTest(unittest.TestCase):
         self.assertEqual(main.main(args), 0)
 
 
-if __name__ == "__main__":  # pragma: no cover
+if __name__ == "__main__":
     unittest.main()
