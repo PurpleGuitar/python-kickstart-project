@@ -103,6 +103,7 @@ edit:
 .PHONY: format
 format: .venv
 	. .venv/bin/activate && python3 -m ruff format $(PY_SOURCES)
+	. .venv/bin/activate && python3 -m ruff check --fix $(PY_SOURCES)
 	pandoc readme.md --from markdown --to gfm+smart --output readme.md
 
 #

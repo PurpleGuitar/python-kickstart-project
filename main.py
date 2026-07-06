@@ -1,13 +1,8 @@
 """TODO: Purpose of this program"""
 
-# Standard imports
 import logging
 import sys
 from argparse import ArgumentParser, Namespace
-
-# Library imports
-
-# Project imports
 
 
 def parse_args() -> Namespace:  # pragma: no cover

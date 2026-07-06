@@ -1,11 +1,8 @@
 """Tests for main.py"""
 
-# Standard imports
 import unittest
 from argparse import Namespace
 
-# Library imports
-# Project imports
 import main
 
 
