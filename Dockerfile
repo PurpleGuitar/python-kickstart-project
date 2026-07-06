@@ -22,6 +22,9 @@ COPY --chown=appuser:appuser makefile /app
 COPY --chown=appuser:appuser requirements.txt /app
 RUN make .venv
 
+# Tool configuration (used by make lint / make test)
+COPY --chown=appuser:appuser pyproject.toml /app
+
 # Copy the rest of the application code
 COPY --chown=appuser:appuser tests/ /app/tests/
 COPY --chown=appuser:appuser *.py /app

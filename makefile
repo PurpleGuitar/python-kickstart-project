@@ -27,11 +27,11 @@ run: .venv
 
 .PHONY: mypy
 mypy: .venv
-	. .venv/bin/activate && python3 -m mypy --strict $(PY_SOURCES)
+	. .venv/bin/activate && python3 -m mypy $(PY_SOURCES)
 
 .PHONY: pylint
 pylint: .venv
-	. .venv/bin/activate && python3 -m pylint --jobs 4 --output-format=colorized $(PY_SOURCES)
+	. .venv/bin/activate && python3 -m pylint --output-format=colorized $(PY_SOURCES)
 
 .PHONY: lint
 lint: .venv mypy pylint
@@ -43,7 +43,7 @@ lint: .venv mypy pylint
 .PHONY: test
 test: .venv
 	. .venv/bin/activate \
-	&& python3 -m coverage run --branch -m unittest discover -p "test*.py" \
+	&& python3 -m coverage run -m unittest discover -p "test*.py" \
 	&& python3 -m coverage report \
 	&& python3 -m coverage html
 
@@ -98,7 +98,7 @@ dist: .venv
 
 .PHONY: edit
 edit:
-	${EDITOR} readme.md main.py $(PY_SOURCES) makefile requirements.txt .gitignore
+	${EDITOR} readme.md main.py $(PY_SOURCES) makefile pyproject.toml requirements.txt .gitignore
 
 .PHONY: format
 format: .venv
@@ -150,7 +150,7 @@ docker-clean:
 .PHONY: docker-build
 docker-build: .docker-built
 
-.docker-built: Dockerfile makefile requirements.txt $(PY_SOURCES)
+.docker-built: Dockerfile makefile pyproject.toml requirements.txt $(PY_SOURCES)
 	# Build the Docker image
 	test -n "$(DOCKER_IMAGE)" || (echo "DOCKER_IMAGE is not set" && exit 1)
 	docker build -t $(DOCKER_IMAGE) .

@@ -1,0 +1,29 @@
+# Tool configuration for this project.
+#
+# Orchestration -- *which* commands run -- lives in the makefile. This file
+# holds the *settings* those tools use, so that editors, pre-commit hooks, and
+# CI all pick up the same configuration as `make lint` / `make test`.
+#
+# No new dependencies are required: black, mypy, pylint, and coverage all read
+# their configuration from pyproject.toml natively.
+
+[tool.mypy]
+strict = true
+
+[tool.pylint.main]
+jobs = 4
+
+[tool.black]
+target-version = ["py313"]
+
+[tool.coverage.run]
+branch = true
+
+[tool.coverage.report]
+# Excluded in addition to the built-in defaults (which already cover
+# "# pragma: no cover"). This lets you drop the pragma from __main__ guards.
+exclude_also = [
+    "if __name__ == .__main__.:",
+]
+# Fail the build if coverage regresses below this percentage.
+fail_under = 80

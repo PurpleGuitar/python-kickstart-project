@@ -18,6 +18,8 @@ Main files in this project:
 - `main.py`: Your Python source code goes here.
 - `tests/test_main.py`: Your unit tests can go in this directory.
 - `requirements.txt`: Edit to add or remove library dependencies.
+- `pyproject.toml`: Configuration for the tools (black, mypy, pylint,
+  coverage). Editors and CI read the same settings as `make`.
 - `makefile`: Contains commands for `make` to execute.
 
 # Make commands
