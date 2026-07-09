@@ -29,7 +29,8 @@ Use `make` to do basic operations:
 - `make lint` to run mypy and ruff on source and tests.
 - `make test` to discover and run tests with coverage.
 - `make dist` to build an executable in the `dist/` directory.
-- `make format` to reformat Python source files and readme.md.
+- `make format` to reformat Python source files and readme.md (requires
+  `pandoc` to be installed on your system).
 - `make edit` to open the project files in your `$EDITOR`.
 - `make clean` to clean up temporary files.
 
@@ -51,8 +52,12 @@ call `venv` and `pip` as needed to update the environment.
 
 # Unit testing
 
-A `tests/` folder is already set up as a importable module for automatic
-test discovery. It has an example test inside it.
+A `tests/` folder is already set up as an importable module for
+automatic test discovery. It has an example test inside it.
+
+Tests are run using `coverage`. The project enforces a minimum test
+coverage threshold of **80%** (configured in `pyproject.toml`). If
+coverage falls below this threshold, the `make test` command will fail.
 
 If you prefer to keep your unit tests alongside your main code instead
 of in a `tests/` directory, that's fine; the test commands will work
@@ -100,7 +105,13 @@ and [StackOverflow](https://stackoverflow.com/a/54066043)
 # Docker support
 
 Several `make` commands are available that will run in a Docker
-container.
+container. Before using them, you may wish to source `env.sh` to
+configure sensible default environment variables (such as
+`DOCKER_IMAGE`):
+
+``` bash
+source env.sh
+```
 
 - `make docker-run` to build and run the app in a Docker container.
 - `make docker-lint` to build and lint the app in a Docker container.
