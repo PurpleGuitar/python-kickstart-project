@@ -4,10 +4,19 @@ PY_SOURCES := $(shell find . -type f -name '*.py' -not -path './.*' -not -path '
 #
 # Run app
 #
+# Pass arguments to the app using ARGS, e.g.:
+#   make run ARGS="~/repos/am_num_text_ulb"
+#
+# Setting ARGS replaces the default below, so include --trace yourself if
+# you want debug logging:
+#   make run ARGS="path/to/file.txt --trace"
+#
+
+ARGS ?= --trace
 
 .PHONY: run
 run: .venv
-	. .venv/bin/activate && python3 main.py --trace
+	. .venv/bin/activate && python3 main.py $(ARGS)
 
 #
 # Virtual environment management
