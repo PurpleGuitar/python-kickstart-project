@@ -160,6 +160,15 @@ docker-lint: docker-build
 	test -n "$(DOCKER_IMAGE)" || (echo "DOCKER_IMAGE is not set" && exit 1)
 	docker run --rm -it $(DOCKER_IMAGE) make lint
 
+# An interactive shell inside the container, for poking around the image:
+# inspecting what was copied in, or running ad-hoc commands. The venv is not
+# activated, so activate it yourself or just use `make`.
+
+.PHONY: docker-shell
+docker-shell: docker-build
+	test -n "$(DOCKER_IMAGE)" || (echo "DOCKER_IMAGE is not set" && exit 1)
+	docker run --rm -it $(DOCKER_IMAGE) bash
+
 .PHONY: docker-clean
 docker-clean:
 	test -n "$(DOCKER_IMAGE)" || (echo "DOCKER_IMAGE is not set" && exit 1)
@@ -169,7 +178,7 @@ docker-clean:
 .PHONY: docker-build
 docker-build: .docker-built
 
-.docker-built: Dockerfile makefile pyproject.toml requirements.txt $(PY_SOURCES)
+.docker-built: Dockerfile .dockerignore makefile pyproject.toml requirements.txt $(PY_SOURCES)
 	# Build the Docker image
 	test -n "$(DOCKER_IMAGE)" || (echo "DOCKER_IMAGE is not set" && exit 1)
 	docker build -t $(DOCKER_IMAGE) .

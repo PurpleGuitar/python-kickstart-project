@@ -150,6 +150,8 @@ source env.sh
 - `make docker-run` to build and run the app in a Docker container.
 - `make docker-lint` to build and lint the app in a Docker container.
 - `make docker-test` to build and test the app in a Docker container.
+- `make docker-shell` to build the container and open an interactive
+  `bash` shell inside it.
 - `make docker-build` to build the Docker container.
 - `make docker-clean` to remove the Docker image and rebuild marker.
 

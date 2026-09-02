@@ -1,0 +1,37 @@
+# Exclude everything the image doesn't need. Anything not listed here is
+# copied into the image by `COPY . /app`, so new modules and packages are
+# picked up automatically.
+
+# Git metadata
+.git/
+.gitignore
+
+# Virtual environment (built inside the image by `make .venv`; the host copy
+# hardcodes host paths and would break the container)
+.venv/
+
+# Python bytecode and build output
+**/__pycache__/
+**/*.py[cod]
+build/
+dist/
+main.spec
+
+# Tool caches
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+
+# Testing and coverage output
+htmlcov/
+.coverage
+
+# Docker support
+Dockerfile
+.dockerignore
+.docker-built
+
+# Editor and local environment files
+.vscode/
+**/*.swp
+env.sh

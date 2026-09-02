@@ -25,6 +25,7 @@ RUN make .venv
 # Tool configuration (used by make lint / make test)
 COPY --chown=appuser:appuser pyproject.toml /app
 
-# Copy the rest of the application code
-COPY --chown=appuser:appuser tests/ /app/tests/
-COPY --chown=appuser:appuser *.py /app
+# Copy the rest of the application code. This copies everything not listed
+# in .dockerignore, so user-created modules, packages and data files are
+# picked up without editing this file.
+COPY --chown=appuser:appuser . /app
