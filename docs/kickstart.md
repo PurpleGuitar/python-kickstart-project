@@ -71,8 +71,8 @@ changes (they require `inotifywait`, from the `inotify-tools` package):
 
 Virtual environment management is automatic. Add or remove libraries in
 the `[dependency-groups]` section of `pyproject.toml`, and the makefile
-commands will automatically call `venv` and `pip` as needed to update the
-environment.
+commands will automatically call `venv` and `pip` as needed to update
+the environment.
 
 Dependencies are declared as a PEP 735 dependency group and installed
 with `pip install --group dev`, which requires pip 25.1 or newer. There
