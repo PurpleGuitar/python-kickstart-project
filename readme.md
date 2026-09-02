@@ -79,6 +79,17 @@ Virtual environment management is automatic. Update `requirements.txt`
 to add or remove libraries, and the makefile commands will automatically
 call `venv` and `pip` as needed to update the environment.
 
+# Python version
+
+The project targets a single Python version, pinned in two places:
+
+- `Dockerfile`: the `python:` base image tag.
+- `pyproject.toml`: ruff's `target-version` and mypy's `python_version`.
+
+Both currently target Python 3.14. Change them together when moving to a
+new version. Your local `.venv` is built from whatever `python3`
+resolves to on your system, so keep that in step too.
+
 # Unit testing
 
 A `tests/` folder is already set up as an importable module for

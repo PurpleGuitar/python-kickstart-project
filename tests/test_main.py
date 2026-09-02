@@ -8,7 +8,6 @@ class MainTest(unittest.TestCase):
 
     def test_placeholder(self) -> None:
         """Placeholder test for main.py."""
-        pass
 
 
 if __name__ == "__main__":

@@ -9,9 +9,13 @@
 
 [tool.mypy]
 strict = true
+# Assume this Python version when type checking, rather than whatever
+# interpreter happens to be running mypy. Keep in sync with the Dockerfile.
+python_version = "3.14"
 
 [tool.ruff]
-target-version = "py313"
+# Syntax and idioms to target. Keep in sync with the Dockerfile.
+target-version = "py314"
 line-length = 88
 
 [tool.ruff.lint]
@@ -23,6 +27,20 @@ select = [
     "B",        # flake8-bugbear (likely-bug patterns)
     "UP",       # pyupgrade (modernize syntax)
     "PL",       # pylint-equivalent rules
+    "RUF",      # Ruff-specific rules
+    "SIM",      # flake8-simplify (redundant constructs)
+    "C4",       # flake8-comprehensions
+    "N",        # pep8-naming
+    "PIE",      # flake8-pie (misc. lint)
+    "G",        # flake8-logging-format (lazy %-formatting in log calls)
+]
+
+# Individual rules to switch back off. These come from the families above
+# but are noisy or enforce arbitrary thresholds.
+ignore = [
+    "PLR2004",  # magic-value-comparison: noisy, especially in tests
+    "PLR0913",  # too-many-arguments: arbitrary threshold
+    "PLC0415",  # import-outside-top-level: forbids lazy imports
 ]
 
 [tool.coverage.run]
