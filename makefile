@@ -110,7 +110,7 @@ dist: .venv
 
 .PHONY: edit
 edit:
-	${EDITOR} $(MD_SOURCES) main.py $(PY_SOURCES) makefile pyproject.toml requirements.txt .gitignore
+	${EDITOR} readme.md $(MD_SOURCES) main.py $(PY_SOURCES) makefile pyproject.toml requirements.txt .gitignore
 
 .PHONY: format
 format: .venv
