@@ -1,6 +1,9 @@
 # All .py files in non-dot subdirectories (exclude virtualenv, build/dist, hidden dirs)
 PY_SOURCES := $(shell find . -type f -name '*.py' -not -path './.*' -not -path './.venv/*' -not -path './build/*' -not -path './dist/*')
 
+# All markdown files, reformatted by `make format` and opened by `make edit`
+MD_SOURCES := $(shell find . -type f -name '*.md' -not -path './.*' -not -path './.venv/*' | sort)
+
 #
 # Run app
 #
@@ -107,13 +110,15 @@ dist: .venv
 
 .PHONY: edit
 edit:
-	${EDITOR} readme.md main.py $(PY_SOURCES) makefile pyproject.toml requirements.txt .gitignore
+	${EDITOR} $(MD_SOURCES) main.py $(PY_SOURCES) makefile pyproject.toml requirements.txt .gitignore
 
 .PHONY: format
 format: .venv
 	. .venv/bin/activate && python3 -m ruff format $(PY_SOURCES)
 	. .venv/bin/activate && python3 -m ruff check --fix $(PY_SOURCES)
-	pandoc readme.md --from markdown --to gfm+smart --output readme.md
+	for f in $(MD_SOURCES); do \
+		pandoc $$f --from markdown --to gfm+smart --output $$f; \
+	done
 
 #
 # Cleanup
