@@ -60,6 +60,9 @@ you also want debug logging:
 make run ARGS="path/to/file.txt --trace"
 ```
 
+`make docker-run` accepts `ARGS` the same way and forwards it into the
+container.
+
 ## Watch commands
 
 These commands re-run automatically whenever a Python source file

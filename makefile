@@ -136,10 +136,14 @@ clean:
 
 # You can set a sensible default for DOCKER_IMAGE by sourcing env.sh.
 
+# ARGS is forwarded explicitly: the container runs its own `make`, and
+# `docker run` does not inherit the host environment, so the host's ARGS
+# would otherwise be dropped.
+
 .PHONY: docker-run
 docker-run: docker-build
 	test -n "$(DOCKER_IMAGE)" || (echo "DOCKER_IMAGE is not set" && exit 1)
-	docker run --rm -it $(DOCKER_IMAGE) make run
+	docker run --rm -it $(DOCKER_IMAGE) make run ARGS="$(ARGS)"
 
 .PHONY: docker-test
 docker-test: docker-build
