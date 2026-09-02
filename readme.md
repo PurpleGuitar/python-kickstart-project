@@ -20,6 +20,12 @@ Main files in this project:
 - `requirements.txt`: Edit to add or remove library dependencies.
 - `pyproject.toml`: Configuration for the tools (ruff, mypy, coverage).
 - `makefile`: Contains commands for `make` to execute.
+- `Dockerfile`: Defines the container image used by the `docker-*` make
+  commands.
+- `env.sh`: Sensible defaults for environment variables; source it
+  before using the Docker commands.
+- `.gitignore`: Pre-configured to ignore caches, build artifacts, and
+  the virtual environment.
 
 # Make commands
 
@@ -27,12 +33,32 @@ Use `make` to do basic operations:
 
 - `make run` to run with debug logs sent to stderr.
 - `make lint` to run mypy and ruff on source and tests.
+- `make mypy` or `make ruff` to run just one of the two linters.
 - `make test` to discover and run tests with coverage.
 - `make dist` to build an executable in the `dist/` directory.
-- `make format` to reformat Python source files and readme.md (requires
-  `pandoc` to be installed on your system).
+- `make format` to reformat Python source files, apply ruff's lint
+  auto-fixes, and reformat readme.md (requires `pandoc` to be installed
+  on your system).
 - `make edit` to open the project files in your `$EDITOR`.
+- `make .venv` to create or update the virtual environment.
 - `make clean` to clean up temporary files.
+
+## Passing arguments to your app
+
+`make run` passes the contents of the `ARGS` variable to `main.py`.
+`ARGS` defaults to `--trace`, which is why a bare `make run` produces
+debug logs. To pass your own arguments, set it on the command line:
+
+``` bash
+make run ARGS="path/to/file.txt"
+```
+
+Setting `ARGS` *replaces* the default, so include `--trace` yourself if
+you also want debug logging:
+
+``` bash
+make run ARGS="path/to/file.txt --trace"
+```
 
 ## Watch commands
 
