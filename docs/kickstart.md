@@ -10,8 +10,8 @@ Main files in this project:
 - `main.py`: Your Python source code goes here.
 - `tests/test_main.py`: Your unit tests can go in this directory.
 - `readme.md`: Documentation for your project.
-- `requirements.txt`: Edit to add or remove library dependencies.
-- `pyproject.toml`: Configuration for the tools (ruff, mypy, coverage).
+- `pyproject.toml`: Library dependencies, plus configuration for the
+  tools (ruff, mypy, coverage).
 - `makefile`: Contains commands for `make` to execute.
 - `Dockerfile`: Defines the container image used by the `docker-*` make
   commands.
@@ -69,9 +69,14 @@ changes (they require `inotifywait`, from the `inotify-tools` package):
 
 # Virtual Environment
 
-Virtual environment management is automatic. Update `requirements.txt`
-to add or remove libraries, and the makefile commands will automatically
-call `venv` and `pip` as needed to update the environment.
+Virtual environment management is automatic. Add or remove libraries in
+the `[dependency-groups]` section of `pyproject.toml`, and the makefile
+commands will automatically call `venv` and `pip` as needed to update the
+environment.
+
+Dependencies are declared as a PEP 735 dependency group and installed
+with `pip install --group dev`, which requires pip 25.1 or newer. There
+is no `requirements.txt`.
 
 # Python version
 
@@ -179,7 +184,7 @@ project's virtual environment directory: `./.venv/bin/python`
 ## Updating the virtual environment
 
 If you need to force an update to the project dependencies, you can
-`touch requirements.txt` and then execute any `make` command,
+`touch pyproject.toml` and then execute any `make` command,
 e.g. `make run` or `make .venv`, to detect the change and update the
 dependencies.
 

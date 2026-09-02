@@ -1,4 +1,4 @@
-# Tool configuration for this project.
+# Dependencies and tool configuration for this project.
 #
 # Orchestration -- *which* commands run -- lives in the makefile. This file
 # holds the *settings* those tools use, so that editors, pre-commit hooks, and
@@ -6,6 +6,27 @@
 #
 # No plugins are required: ruff, mypy, and coverage all read their
 # configuration from pyproject.toml natively.
+
+# Dependencies, as a PEP 735 dependency group. `make .venv` installs this
+# group, so edit the list here to add or remove libraries.
+#
+# Versions are pinned with `==` so that every machine and the Docker image
+# build identical environments. Bump a pin deliberately; `make .venv` will
+# reinstall on the next `make` command.
+#
+# Requires pip 25.1 or newer for `pip install --group`. No [project] table is
+# needed: this template builds a binary with pyinstaller rather than
+# publishing a package. If you do start distributing this on an index, add a
+# [project] table and put *runtime* dependencies in its `dependencies` key,
+# leaving the development-only tools below.
+
+[dependency-groups]
+dev = [
+    "coverage==7.16.0",
+    "mypy==2.3.1",
+    "pyinstaller==6.22.2",
+    "ruff==0.16.5",
+]
 
 [tool.mypy]
 strict = true

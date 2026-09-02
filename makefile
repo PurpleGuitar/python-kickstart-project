@@ -25,11 +25,16 @@ run: .venv
 # Virtual environment management
 #
 
-.venv: requirements.txt
+# Dependencies live in the [dependency-groups] section of pyproject.toml.
+# That file also holds lint and test configuration, so editing a ruff rule
+# will reinstall the venv too; the reinstall is a no-op when the pins have
+# not changed.
+
+.venv: pyproject.toml
 	# Create virtual environment
 	python3 -m venv .venv
-	# Install/update dependencies from requirements.txt
-	. .venv/bin/activate; python3 -m pip install -r requirements.txt
+	# Install/update dependencies from pyproject.toml
+	. .venv/bin/activate; python3 -m pip install --group dev
 	# Update modified date of .venv so that make knows it's been updated
 	touch .venv
 
@@ -110,7 +115,7 @@ dist: .venv
 
 .PHONY: edit
 edit:
-	${EDITOR} readme.md $(MD_SOURCES) main.py $(PY_SOURCES) makefile pyproject.toml requirements.txt .gitignore
+	${EDITOR} readme.md $(MD_SOURCES) main.py $(PY_SOURCES) makefile pyproject.toml .gitignore
 
 .PHONY: format
 format: .venv
@@ -130,6 +135,7 @@ clean:
 	rm -rf .venv
 	rm -rf __pycache__
 	rm -rf tests/__pycache__
+	rm -rf .ruff_cache
 	rm -rf htmlcov
 	rm -f .coverage
 	rm -rf build
@@ -178,7 +184,7 @@ docker-clean:
 .PHONY: docker-build
 docker-build: .docker-built
 
-.docker-built: Dockerfile .dockerignore makefile pyproject.toml requirements.txt $(PY_SOURCES)
+.docker-built: Dockerfile .dockerignore makefile pyproject.toml $(PY_SOURCES)
 	# Build the Docker image
 	test -n "$(DOCKER_IMAGE)" || (echo "DOCKER_IMAGE is not set" && exit 1)
 	docker build -t $(DOCKER_IMAGE) .

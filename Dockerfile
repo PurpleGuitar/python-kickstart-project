@@ -17,9 +17,12 @@ RUN chown appuser:appuser /app
 # Drop root privileges for everything that follows
 USER appuser
 
-# Set up venv
+# Set up venv. Only the two files `make .venv` reads are copied first, so this
+# expensive layer stays cached when application code changes. Note that
+# pyproject.toml also holds lint and test configuration, so editing a ruff rule
+# invalidates the layer and reinstalls dependencies.
 COPY --chown=appuser:appuser makefile /app
-COPY --chown=appuser:appuser requirements.txt /app
+COPY --chown=appuser:appuser pyproject.toml /app
 RUN make .venv
 
 # Copy the rest of the application code. This copies everything not listed in
